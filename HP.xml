@@ -1,0 +1,933 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<formatVersion>4</formatVersion>
+	<description></description>
+	<events>
+		<event id="100827">
+			<name>DC_STATUS_MINOR</name>
+			<guid>9fcbf8ca-9e6f-8341-929d-f12b1e6d9ccf</guid>
+			<code>100827</code>
+			<severity>2</severity>
+			<flags>1</flags>
+			<message>%2 is %4</message>
+			<description>Custom data collection threshold event.&#x0D;&#x0A;Parameters:&#x0D;&#x0A;   1) Parameter name&#x0D;&#x0A;   2) Item description&#x0D;&#x0A;   3) Threshold value&#x0D;&#x0A;   4) Actual value&#x0D;&#x0A;   5) Data collection item ID&#x0D;&#x0A;   6) Instance&#x0D;&#x0A;   7) Repeat flag</description>
+		</event>
+		<event id="100013">
+			<name>DC_STATUS_NORMAL</name>
+			<guid>6fb41833-ee0f-e346-b67f-d1ff7ca5d339</guid>
+			<code>100013</code>
+			<severity>0</severity>
+			<flags>1</flags>
+			<message>%2 is normal</message>
+			<description></description>
+		</event>
+	</events>
+	<templates>
+		<template id="312">
+			<guid>a3f5a464-39f2-445f-ad2d-2db2f0ee7c27</guid>
+			<name>HP</name>
+			<flags>0</flags>
+			<path>
+				<element id="1">Hardware</element>
+			</path>
+			<dataCollection>
+				<dci id="907">
+					<guid>66975693-8ec2-4071-bcf1-9ec6d5619016</guid>
+					<name>.1.3.6.1.4.1.232.6.2.6.7.1.9.0.{instance}</name>
+					<description>HP fan condition {instance}</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>2568</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>3</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 1: // Fan status detection is not supported by this system or driver.&#x0A;&#x09;&#x09;return &quot;not supported&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 2: // The fan is operating properly.&#x0A;&#x09;&#x09;return &quot;ok&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3: // A redundant fan is not operating properly.&#x0A;&#x09;&#x09;return &quot;degraded&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 4: // A non-redundant fan is not operating properly.&#x0A;&#x09;&#x09;return &quot;failed&quot;;&#x0A;&#x09;&#x09;break;&#x09;&#x0A;&#x09;default: // other&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<thresholds>
+						<threshold id="1">
+							<function>0</function>
+							<condition>7</condition>
+							<value>ok</value>
+							<activationEvent>DC_STATUS_MINOR</activationEvent>
+							<deactivationEvent>DC_STATUS_NORMAL</deactivationEvent>
+							<sampleCount>1</sampleCount>
+							<repeatInterval>-1</repeatInterval>
+							<script></script>
+						</threshold>
+					</thresholds>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.6.2.6.7.1.2.0</instanceDiscoveryData>
+					<instanceFilter>return %(true, $1);</instanceFilter>
+				</dci>
+				<dci id="905">
+					<guid>83ab0acd-7a24-404e-b0ca-606e123a4f09</guid>
+					<name>1.3.6.1.4.1.232.2.2.2.6.0</name>
+					<description>HP product number</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>0</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>2568</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>0</instanceDiscoveryMethod>
+					<transformation></transformation>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData></instanceDiscoveryData>
+					<instanceFilter></instanceFilter>
+				</dci>
+				<dci id="895">
+					<guid>04b011c1-e84e-44da-8d51-f0b3bfe82f13</guid>
+					<name>.1.3.6.1.4.1.232.2.2.4.2.0</name>
+					<description>HP product name</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>0</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>2568</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>0</instanceDiscoveryMethod>
+					<transformation></transformation>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData></instanceDiscoveryData>
+					<instanceFilter></instanceFilter>
+				</dci>
+				<dci id="933">
+					<guid>74b0b97d-b539-9e41-a29a-508bd7906c6d</guid>
+					<name>.1.3.6.1.4.1.232.3.2.2.1.1.6.{instance}</name>
+					<description>HP controller status</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>2568</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>4</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 1:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 2:&#x0A;&#x09;&#x09;return &quot;ok&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3:&#x0A;&#x09;&#x09;return &quot;degraded&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 4:&#x0A;&#x09;&#x09;return &quot;failed&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;default:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<thresholds>
+						<threshold id="1">
+							<function>0</function>
+							<condition>7</condition>
+							<value>ok</value>
+							<activationEvent>DC_STATUS_MINOR</activationEvent>
+							<deactivationEvent>DC_STATUS_NORMAL</deactivationEvent>
+							<sampleCount>1</sampleCount>
+							<repeatInterval>-1</repeatInterval>
+							<script></script>
+						</threshold>
+					</thresholds>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.3.2.2.1.1.6</instanceDiscoveryData>
+					<instanceFilter>transport = CreateSNMPTransport($node);&#x0D;&#x0A;if (transport == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;name = SNMPGetValue(transport, &quot;.1.3.6.1.4.1.232.3.2.2.1.1.6.&quot; . $1);&#x0D;&#x0A;if (name == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;&#x0D;&#x0A;return %(true, $1, name);</instanceFilter>
+				</dci>
+				<dci id="937">
+					<guid>18547f8e-820d-6348-8910-f7636d30332c</guid>
+					<name>.1.3.6.1.4.1.232.3.2.3.1.1.4.{instance}</name>
+					<description>HP logical drive status {instance}</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>512</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>4</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 1:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 2:&#x0A;&#x09;&#x09;return &quot;ok&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3:&#x0A;&#x09;&#x09;return &quot;failed&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 4:&#x0A;&#x09;&#x09;return &quot;unconfigured&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 5:&#x0A;&#x09;&#x09;return &quot;recovering&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 6:&#x0A;&#x09;&#x09;return &quot;readyForRebuild&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 7:&#x0A;&#x09;&#x09;return &quot;rebuilding&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 8:&#x0A;&#x09;&#x09;return &quot;wrongDrive&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 9:&#x0A;&#x09;&#x09;return &quot;badConnect&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 10:&#x0A;&#x09;&#x09;return &quot;overheating&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 11:&#x0A;&#x09;&#x09;return &quot;shutdown&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 12:&#x0A;&#x09;&#x09;return &quot;expanding&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 13:&#x0A;&#x09;&#x09;return &quot;notAvailable&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 14:&#x0A;&#x09;&#x09;return &quot;queuedForExpansion&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 15:&#x0A;&#x09;&#x09;return &quot;multipathAccessDegraded&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 16:&#x0A;&#x09;&#x09;return &quot;erasing&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 17:&#x0A;&#x09;&#x09;return &quot;predictiveSpareRebuildReady&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 18:&#x0A;&#x09;&#x09;return &quot;rapidParityInitInProgress&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 19:&#x0A;&#x09;&#x09;return &quot;rapidParityInitPending&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 20:&#x0A;&#x09;&#x09;return &quot;noAccessEncryptedNoCntlrKey&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 21:&#x0A;&#x09;&#x09;return &quot;unencryptedToEncryptedInProgress&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 22:&#x0A;&#x09;&#x09;return &quot;newLogDrvKeyRekeyInProgress&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 23:&#x0A;&#x09;&#x09;return &quot;noAccessEncryptedCntlrEncryptnNotEnbld&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 24:&#x0A;&#x09;&#x09;return &quot;unencryptedToEncryptedNotStarted&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 25:&#x0A;&#x09;&#x09;return &quot;newLogDrvKeyRekeyRequestReceived&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;default:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<thresholds>
+						<threshold id="1">
+							<function>0</function>
+							<condition>7</condition>
+							<value>ok</value>
+							<activationEvent>DC_STATUS_MINOR</activationEvent>
+							<deactivationEvent>DC_STATUS_NORMAL</deactivationEvent>
+							<sampleCount>1</sampleCount>
+							<repeatInterval>-1</repeatInterval>
+							<script></script>
+						</threshold>
+					</thresholds>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.3.2.3.1.1.4</instanceDiscoveryData>
+					<instanceFilter>transport = CreateSNMPTransport($node);&#x0D;&#x0A;if (transport == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;name = SNMPGetValue(transport, &quot;.1.3.6.1.4.1.232.3.2.3.1.1.4.&quot; . $1);&#x0D;&#x0A;if (name == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;&#x0D;&#x0A;return %(true, $1, name);</instanceFilter>
+				</dci>
+				<dci id="903">
+					<guid>f38fd2a4-3088-47aa-aea6-c7f9e0e38744</guid>
+					<name>.1.3.6.1.4.1.232.2.2.2.1.0</name>
+					<description>HP serial number</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>0</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>2568</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>0</instanceDiscoveryMethod>
+					<transformation></transformation>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData></instanceDiscoveryData>
+					<instanceFilter></instanceFilter>
+				</dci>
+				<dci id="930">
+					<guid>108ef9bc-66c3-3a41-8aa5-188cadfcf564</guid>
+					<name>.1.3.6.1.4.1.232.1.2.2.1.1.6.{instance}</name>
+					<description>HP cpu status {instance}</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>2568</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>4</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 1:&#x0A;&#x09;&#x09;return &quot;unknown&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 2:&#x0A;&#x09;&#x09;return &quot;ok&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3:&#x0A;&#x09;&#x09;return &quot;degraded&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 4:&#x0A;&#x09;&#x09;return &quot;failed&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 5:&#x0A;&#x09;&#x09;return &quot;disabled&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;default:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<thresholds>
+						<threshold id="1">
+							<function>0</function>
+							<condition>7</condition>
+							<value>ok</value>
+							<activationEvent>DC_STATUS_MINOR</activationEvent>
+							<deactivationEvent>DC_STATUS_NORMAL</deactivationEvent>
+							<sampleCount>1</sampleCount>
+							<repeatInterval>-1</repeatInterval>
+							<script></script>
+						</threshold>
+					</thresholds>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.1.2.2.1.1.6</instanceDiscoveryData>
+					<instanceFilter>transport = CreateSNMPTransport($node);&#x0D;&#x0A;if (transport == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;name = SNMPGetValue(transport, &quot;.1.3.6.1.4.1.232.1.2.2.1.1.6.&quot; . $1);&#x0D;&#x0A;if (name == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;&#x0D;&#x0A;return %(true, $1, name);</instanceFilter>
+				</dci>
+				<dci id="1097">
+					<guid>f5887782-dab6-4c42-a76b-01cf4bbbfdce</guid>
+					<name>.1.3.6.1.4.1.232.3.2.3.1.1.11.{instance}</name>
+					<description>HP logical drive and associated physical state {instance}</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>512</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>4</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 2: // ok&#x0A;&#x09;&#x09;return &quot;ok&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3: // degraded&#x0A;&#x09;&#x09;return &quot;degraded&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 4:// failed&#x0A;&#x09;&#x09;return &quot;failed&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;default:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<thresholds>
+						<threshold id="1">
+							<function>0</function>
+							<condition>7</condition>
+							<value>ok</value>
+							<activationEvent>DC_STATUS_MINOR</activationEvent>
+							<deactivationEvent>DC_STATUS_NORMAL</deactivationEvent>
+							<sampleCount>1</sampleCount>
+							<repeatInterval>-1</repeatInterval>
+							<script></script>
+						</threshold>
+					</thresholds>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.3.2.3.1.1.11</instanceDiscoveryData>
+					<instanceFilter>transport = CreateSNMPTransport($node);&#x0D;&#x0A;if (transport == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;name = SNMPGetValue(transport, &quot;.1.3.6.1.4.1.232.3.2.3.1.1.11.&quot; . $1);&#x0D;&#x0A;if (name == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;&#x0D;&#x0A;return %(true, $1, name);</instanceFilter>
+				</dci>
+				<dci id="1110">
+					<guid>c2282179-c6fe-914f-88f0-cc3d1f5e30c1</guid>
+					<name>.1.3.6.1.4.1.232.3.2.2.2.1.9.{instance}</name>
+					<description>HP array accelerator status</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>512</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>4</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 2: // ok&#x0A;&#x09;&#x09;return &quot;ok&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3: // degraded&#x0A;&#x09;&#x09;return &quot;degraded&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 4:// failed&#x0A;&#x09;&#x09;return &quot;failed&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;default:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<thresholds>
+						<threshold id="1">
+							<function>0</function>
+							<condition>7</condition>
+							<value>ok</value>
+							<activationEvent>DC_STATUS_MINOR</activationEvent>
+							<deactivationEvent>DC_STATUS_NORMAL</deactivationEvent>
+							<sampleCount>1</sampleCount>
+							<repeatInterval>-1</repeatInterval>
+							<script></script>
+						</threshold>
+					</thresholds>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.3.2.2.2.1.9</instanceDiscoveryData>
+					<instanceFilter>transport = CreateSNMPTransport($node);&#x0D;&#x0A;if (transport == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;name = SNMPGetValue(transport, &quot;.1.3.6.1.4.1.232.3.2.2.2.1.9.&quot; . $1);&#x0D;&#x0A;if (name == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;&#x0D;&#x0A;return %(true, $1, name);</instanceFilter>
+				</dci>
+				<dci id="1121">
+					<guid>c8a77625-4a3b-da4a-887f-76e869bb104a</guid>
+					<name>.1.3.6.1.4.1.232.3.2.2.1.1.6.{instance}</name>
+					<description>HP controller status {instance}</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>512</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>4</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 2: // ok&#x0A;&#x09;&#x09;return &quot;ok&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3: // degraded&#x0A;&#x09;&#x09;return &quot;degraded&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 4:// failed&#x0A;&#x09;&#x09;return &quot;failed&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;default:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<thresholds>
+						<threshold id="1">
+							<function>0</function>
+							<condition>7</condition>
+							<value>ok</value>
+							<activationEvent>DC_STATUS_MINOR</activationEvent>
+							<deactivationEvent>DC_STATUS_NORMAL</deactivationEvent>
+							<sampleCount>1</sampleCount>
+							<repeatInterval>-1</repeatInterval>
+							<script></script>
+						</threshold>
+					</thresholds>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.3.2.2.1.1.6</instanceDiscoveryData>
+					<instanceFilter>transport = CreateSNMPTransport($node);&#x0D;&#x0A;if (transport == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;name = SNMPGetValue(transport, &quot;.1.3.6.1.4.1.232.3.2.2.1.1.6.&quot; . $1);&#x0D;&#x0A;if (name == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;&#x0D;&#x0A;return %(true, $1, name);</instanceFilter>
+				</dci>
+				<dci id="1138">
+					<guid>13a25896-a281-c342-85c1-fd30c1f0c3a7</guid>
+					<name>.1.3.6.1.4.1.232.3.2.5.1.1.6.{instance}</name>
+					<description>HP physical drive status {instance}</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>512</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>4</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 1:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 2:&#x0A;&#x09;&#x09;return &quot;ok&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3:&#x0A;&#x09;&#x09;return &quot;failed&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 4:&#x0A;&#x09;&#x09;return &quot;predictiveFailure&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 5:&#x0A;&#x09;&#x09;return &quot;erasing&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 6:&#x0A;&#x09;&#x09;return &quot;eraseDone&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 7:&#x0A;&#x09;&#x09;return &quot;eraseQueued&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 8:&#x0A;&#x09;&#x09;return &quot;ssdWearOut&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 9:&#x0A;&#x09;&#x09;return &quot;notAuthenticated&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;default:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<thresholds>
+						<threshold id="1">
+							<function>0</function>
+							<condition>7</condition>
+							<value>ok</value>
+							<activationEvent>DC_STATUS_MINOR</activationEvent>
+							<deactivationEvent>DC_STATUS_NORMAL</deactivationEvent>
+							<sampleCount>1</sampleCount>
+							<repeatInterval>-1</repeatInterval>
+							<script></script>
+						</threshold>
+					</thresholds>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.3.2.5.1.1.6</instanceDiscoveryData>
+					<instanceFilter>transport = CreateSNMPTransport($node);&#x0D;&#x0A;if (transport == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;name = SNMPGetValue(transport, &quot;.1.3.6.1.4.1.232.3.2.5.1.1.6.&quot; . $1);&#x0D;&#x0A;if (name == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;&#x0D;&#x0A;return %(true, $1, name);</instanceFilter>
+				</dci>
+				<dci id="1157">
+					<guid>56ce0f0a-0a80-c54b-b19b-8bc911395276</guid>
+					<name>.1.3.6.1.4.1.232.3.2.5.1.1.37.{instance}</name>
+					<description>HP physical drive condition {instance}</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>512</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>4</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 2: // ok&#x0A;&#x09;&#x09;return &quot;ok&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3: // degraded&#x0A;&#x09;&#x09;return &quot;degraded&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 4:// failed&#x0A;&#x09;&#x09;return &quot;failed&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;default:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<thresholds>
+						<threshold id="1">
+							<function>0</function>
+							<condition>7</condition>
+							<value>ok</value>
+							<activationEvent>DC_STATUS_MINOR</activationEvent>
+							<deactivationEvent>DC_STATUS_NORMAL</deactivationEvent>
+							<sampleCount>1</sampleCount>
+							<repeatInterval>-1</repeatInterval>
+							<script></script>
+						</threshold>
+					</thresholds>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.3.2.5.1.1.37</instanceDiscoveryData>
+					<instanceFilter>transport = CreateSNMPTransport($node);&#x0D;&#x0A;if (transport == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;name = SNMPGetValue(transport, &quot;.1.3.6.1.4.1.232.3.2.5.1.1.37.&quot; . $1);&#x0D;&#x0A;if (name == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;&#x0D;&#x0A;return %(true, $1, name);</instanceFilter>
+				</dci>
+				<dci id="1165">
+					<guid>220d372e-9c3a-2e48-92a4-e8cad9cc9bbe</guid>
+					<name>.1.3.6.1.4.1.232.3.2.5.1.1.57.{instance}</name>
+					<description>HP physical drive S.M.A.R.T status {instance}</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>512</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>4</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 1:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 2:&#x0A;&#x09;&#x09;return &quot;ok&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3:&#x0A;&#x09;&#x09;return &quot;replaceDrive&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 4:&#x0A;&#x09;&#x09;return &quot;replaceDriveSSDWearOut&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;default:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<thresholds>
+						<threshold id="1">
+							<function>0</function>
+							<condition>7</condition>
+							<value>ok</value>
+							<activationEvent>DC_STATUS_MINOR</activationEvent>
+							<deactivationEvent>DC_STATUS_NORMAL</deactivationEvent>
+							<sampleCount>1</sampleCount>
+							<repeatInterval>-1</repeatInterval>
+							<script></script>
+						</threshold>
+					</thresholds>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.3.2.5.1.1.57</instanceDiscoveryData>
+					<instanceFilter>transport = CreateSNMPTransport($node);&#x0D;&#x0A;if (transport == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;name = SNMPGetValue(transport, &quot;.1.3.6.1.4.1.232.3.2.5.1.1.57.&quot; . $1);&#x0D;&#x0A;if (name == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;&#x0D;&#x0A;return %(true, $1, name);</instanceFilter>
+				</dci>
+				<dci id="1193">
+					<guid>4ba4b8c2-3403-fd4b-9b73-bc081c29842b</guid>
+					<name>.1.3.6.1.4.1.232.6.2.11.2.0</name>
+					<description>HP eventlog overall IML entries</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>512</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>0</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 2:&#x0A;&#x09;&#x09;return &quot;ok&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3:&#x0A;&#x09;&#x09;return &quot;degraded&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 4:&#x0A;&#x09;&#x09;return &quot;failed&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;default:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<thresholds>
+						<threshold id="1">
+							<function>0</function>
+							<condition>7</condition>
+							<value>ok</value>
+							<activationEvent>DC_STATUS_MINOR</activationEvent>
+							<deactivationEvent>DC_STATUS_NORMAL</deactivationEvent>
+							<sampleCount>1</sampleCount>
+							<repeatInterval>-1</repeatInterval>
+							<script></script>
+						</threshold>
+					</thresholds>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.6.2.11.2.0</instanceDiscoveryData>
+					<instanceFilter>transport = CreateSNMPTransport($node);&#x0D;&#x0A;if (transport == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;name = SNMPGetValue(transport, &quot;.1.3.6.1.4.1.232.6.2.11.2.0.&quot; . $1);&#x0D;&#x0A;if (name == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;&#x0D;&#x0A;return %(true, $1, name);</instanceFilter>
+				</dci>
+				<dci id="1222">
+					<guid>1d2ea602-4c4d-a24d-bf85-3ff11ff40531</guid>
+					<name>.1.3.6.1.4.1.232.6.2.6.5.{instance}</name>
+					<description>HP status of the processor fan(s)</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>512</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>4</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 2:&#x0A;&#x09;&#x09;return &quot;ok&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3:&#x0A;&#x09;&#x09;return &quot;degraded&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 4:&#x0A;&#x09;&#x09;return &quot;failed&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;default:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<thresholds>
+						<threshold id="1">
+							<function>0</function>
+							<condition>7</condition>
+							<value>ok</value>
+							<activationEvent>DC_STATUS_MINOR</activationEvent>
+							<deactivationEvent>DC_STATUS_NORMAL</deactivationEvent>
+							<sampleCount>1</sampleCount>
+							<repeatInterval>-1</repeatInterval>
+							<script></script>
+						</threshold>
+					</thresholds>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.6.2.6.5</instanceDiscoveryData>
+					<instanceFilter>transport = CreateSNMPTransport($node);&#x0D;&#x0A;if (transport == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;name = SNMPGetValue(transport, &quot;.1.3.6.1.4.1.232.6.2.6.5.&quot; . $1);&#x0D;&#x0A;if (name == 1)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;&#x0D;&#x0A;return %(true, $1, name);</instanceFilter>
+				</dci>
+				<dci id="1252">
+					<guid>10fa64cf-31c6-5642-b47f-bfb047e7bfd5</guid>
+					<name>.1.3.6.1.4.1.232.6.2.6.4.{instance}</name>
+					<description>HP status of the system fan(s)</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>512</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>4</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 2:&#x0A;&#x09;&#x09;return &quot;ok&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3:&#x0A;&#x09;&#x09;return &quot;degraded&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 4:&#x0A;&#x09;&#x09;return &quot;failed&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;default:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<thresholds>
+						<threshold id="1">
+							<function>0</function>
+							<condition>7</condition>
+							<value>ok</value>
+							<activationEvent>DC_STATUS_MINOR</activationEvent>
+							<deactivationEvent>DC_STATUS_NORMAL</deactivationEvent>
+							<sampleCount>1</sampleCount>
+							<repeatInterval>-1</repeatInterval>
+							<script></script>
+						</threshold>
+					</thresholds>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.6.2.6.4</instanceDiscoveryData>
+					<instanceFilter>transport = CreateSNMPTransport($node);&#x0D;&#x0A;if (transport == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;name = SNMPGetValue(transport, &quot;.1.3.6.1.4.1.232.6.2.6.4.&quot; . $1);&#x0D;&#x0A;if (name == 1)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;&#x0D;&#x0A;return %(true, $1, name);</instanceFilter>
+				</dci>
+				<dci id="1258">
+					<guid>f2e9d7d0-8017-7747-8d5c-b8f53df0a8bb</guid>
+					<name>.1.3.6.1.4.1.232.6.2.6.3.0</name>
+					<description>HP status of temperature sensors</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>512</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>3</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 2:&#x0A;&#x09;&#x09;return &quot;ok&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3:&#x0A;&#x09;&#x09;return &quot;degraded&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 4:&#x0A;&#x09;&#x09;return &quot;failed&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;default:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<thresholds>
+						<threshold id="1">
+							<function>0</function>
+							<condition>7</condition>
+							<value>ok</value>
+							<activationEvent>DC_STATUS_MINOR</activationEvent>
+							<deactivationEvent>DC_STATUS_NORMAL</deactivationEvent>
+							<sampleCount>1</sampleCount>
+							<repeatInterval>-1</repeatInterval>
+							<script></script>
+						</threshold>
+					</thresholds>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.6.2.6.3.0</instanceDiscoveryData>
+					<instanceFilter>if ($1 == 1)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;return true;</instanceFilter>
+				</dci>
+				<dci id="1350">
+					<guid>247e58a0-2263-6b4e-8cd5-686f8b51487c</guid>
+					<name>.1.3.6.1.4.1.232.6.2.6.7.1.9.{instance}</name>
+					<description>HP condition of the processor fan {instance}</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>512</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>4</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 2:&#x0A;&#x09;&#x09;return &quot;ok&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3:&#x0A;&#x09;&#x09;return &quot;degraded&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 4:&#x0A;&#x09;&#x09;return &quot;failed&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;default:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<thresholds>
+						<threshold id="1">
+							<function>0</function>
+							<condition>7</condition>
+							<value>ok</value>
+							<activationEvent>DC_STATUS_MINOR</activationEvent>
+							<deactivationEvent>DC_STATUS_NORMAL</deactivationEvent>
+							<sampleCount>1</sampleCount>
+							<repeatInterval>-1</repeatInterval>
+							<script></script>
+						</threshold>
+					</thresholds>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.6.2.6.7.1.9</instanceDiscoveryData>
+					<instanceFilter>transport = CreateSNMPTransport($node);&#x0D;&#x0A;if (transport == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;name = SNMPGetValue(transport, &quot;.1.3.6.1.4.1.232.6.2.6.7.1.9.&quot; . $1);&#x0D;&#x0A;if (name == 1)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;&#x0D;&#x0A;return %(true, $1, name);</instanceFilter>
+				</dci>
+				<dci id="1365">
+					<guid>0b39878d-b76a-fc4e-a9ea-ff4bd7b900dd</guid>
+					<name>.1.3.6.1.4.1.232.6.2.6.8.1.6.{instance}</name>
+					<description>HP temperature sensor condition {instance-name} {instance}</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>512</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>4</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 2:&#x0A;&#x09;&#x09;return &quot;ok&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3: // The temperature sensor is outside of normal operating range.&#x0A;&#x09;&#x09;return &quot;degraded&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 4: // The temperature sensor detects a condition that could permanently damage the system.&#x0A;&#x09;&#x09;return &quot;failed&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;default:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<thresholds>
+						<threshold id="1">
+							<function>0</function>
+							<condition>7</condition>
+							<value>ok</value>
+							<activationEvent>DC_STATUS_MINOR</activationEvent>
+							<deactivationEvent>DC_STATUS_NORMAL</deactivationEvent>
+							<sampleCount>1</sampleCount>
+							<repeatInterval>-1</repeatInterval>
+							<script></script>
+						</threshold>
+					</thresholds>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.6.2.6.8.1.6</instanceDiscoveryData>
+					<instanceFilter>transport = CreateSNMPTransport($node);&#x0D;&#x0A;if (transport == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;codename = SNMPGetValue(transport, &quot;.1.3.6.1.4.1.232.6.2.6.8.1.3.&quot; . $1);&#x0D;&#x0A;if (codename == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;switch (codename)&#x0D;&#x0A;{&#x0D;&#x0A;&#x09;case 1:&#x0D;&#x0A;&#x09;&#x09;name = &quot;other&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;case 3:&#x0D;&#x0A;&#x09;&#x09;name = &quot;system&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;case 4:&#x0D;&#x0A;&#x09;&#x09;name = &quot;system board&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;case 5:&#x0D;&#x0A;&#x09;&#x09;name = &quot;I/O board&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;case 6:&#x0D;&#x0A;&#x09;&#x09;name = &quot;cpu&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;case 7:&#x0D;&#x0A;&#x09;&#x09;name = &quot;memory&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;case 8:&#x0D;&#x0A;&#x09;&#x09;name = &quot;storage&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;case 9:&#x0D;&#x0A;&#x09;&#x09;name = &quot;removable media&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;case 10:&#x0D;&#x0A;&#x09;&#x09;name = &quot;power supply&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;case 11:&#x0D;&#x0A;&#x09;&#x09;name = &quot;ambient&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;case 12:&#x0D;&#x0A;&#x09;&#x09;name = &quot;chassis&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;case 13:&#x0D;&#x0A;&#x09;&#x09;name = &quot;bridge card&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;default:&#x0D;&#x0A;&#x09;&#x09;name = &quot;unknown&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;}&#x0D;&#x0A;return %(true, $1, name);</instanceFilter>
+				</dci>
+				<dci id="1459">
+					<guid>4f10823f-502b-754c-81cf-aaaa020b2793</guid>
+					<name>.1.3.6.1.4.1.232.6.2.6.8.1.4.{instance}</name>
+					<description>HP temperature sensor temperature {instance-name} {instance}, °C</description>
+					<dataType>0</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>512</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>4</instanceDiscoveryMethod>
+					<transformation></transformation>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.6.2.6.8.1.4</instanceDiscoveryData>
+					<instanceFilter>transport = CreateSNMPTransport($node);&#x0D;&#x0A;if (transport == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;codename = SNMPGetValue(transport, &quot;.1.3.6.1.4.1.232.6.2.6.8.1.3.&quot; . $1);&#x0D;&#x0A;if (codename == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;switch (codename)&#x0D;&#x0A;{&#x0D;&#x0A;&#x09;case 1:&#x0D;&#x0A;&#x09;&#x09;name = &quot;other&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;case 3:&#x0D;&#x0A;&#x09;&#x09;name = &quot;system&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;case 4:&#x0D;&#x0A;&#x09;&#x09;name = &quot;system board&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;case 5:&#x0D;&#x0A;&#x09;&#x09;name = &quot;I/O board&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;case 6:&#x0D;&#x0A;&#x09;&#x09;name = &quot;cpu&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;case 7:&#x0D;&#x0A;&#x09;&#x09;name = &quot;memory&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;case 8:&#x0D;&#x0A;&#x09;&#x09;name = &quot;storage&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;case 9:&#x0D;&#x0A;&#x09;&#x09;name = &quot;removable media&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;case 10:&#x0D;&#x0A;&#x09;&#x09;name = &quot;power supply&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;case 11:&#x0D;&#x0A;&#x09;&#x09;name = &quot;ambient&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;case 12:&#x0D;&#x0A;&#x09;&#x09;name = &quot;chassis&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;case 13:&#x0D;&#x0A;&#x09;&#x09;name = &quot;bridge card&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;&#x09;default:&#x0D;&#x0A;&#x09;&#x09;name = &quot;unknown&quot;;&#x0D;&#x0A;&#x09;&#x09;break;&#x0D;&#x0A;}&#x0D;&#x0A;return %(true, $1, name);</instanceFilter>
+				</dci>
+				<dci id="1553">
+					<guid>c95fb2cc-c0c5-0a41-a982-24c9e467e0d8</guid>
+					<name>.1.3.6.1.4.1.232.6.2.9.1.{instance}</name>
+					<description>HP overall condition of power supply subsystem</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>512</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>4</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 2:&#x0A;&#x09;&#x09;return &quot;ok&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3:&#x0A;&#x09;&#x09;return &quot;degraded&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 4:&#x0A;&#x09;&#x09;return &quot;failed&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;default:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<thresholds>
+						<threshold id="1">
+							<function>0</function>
+							<condition>7</condition>
+							<value>ok</value>
+							<activationEvent>DC_STATUS_MINOR</activationEvent>
+							<deactivationEvent>DC_STATUS_NORMAL</deactivationEvent>
+							<sampleCount>1</sampleCount>
+							<repeatInterval>-1</repeatInterval>
+							<script></script>
+						</threshold>
+					</thresholds>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.6.2.9.1</instanceDiscoveryData>
+					<instanceFilter>transport = CreateSNMPTransport($node);&#x0D;&#x0A;if (transport == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;name = SNMPGetValue(transport, &quot;.1.3.6.1.4.1.232.6.2.9.1.&quot; . $1);&#x0D;&#x0A;if (name == 1)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;&#x0D;&#x0A;return %(true, $1, name);</instanceFilter>
+				</dci>
+				<dci id="1559">
+					<guid>a477dc78-5115-2f42-a173-d540be57337b</guid>
+					<name>.1.3.6.1.4.1.232.6.2.9.3.1.4.{instance}</name>
+					<description>HP condition of the power supply {instance}</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>512</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>4</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 2:&#x0A;&#x09;&#x09;return &quot;ok&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3:&#x0A;&#x09;&#x09;return &quot;degraded&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 4:&#x0A;&#x09;&#x09;return &quot;failed&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;default:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<thresholds>
+						<threshold id="1">
+							<function>0</function>
+							<condition>7</condition>
+							<value>ok</value>
+							<activationEvent>DC_STATUS_MINOR</activationEvent>
+							<deactivationEvent>DC_STATUS_NORMAL</deactivationEvent>
+							<sampleCount>1</sampleCount>
+							<repeatInterval>-1</repeatInterval>
+							<script></script>
+						</threshold>
+					</thresholds>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.6.2.9.3.1.4</instanceDiscoveryData>
+					<instanceFilter>transport = CreateSNMPTransport($node);&#x0D;&#x0A;if (transport == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;name = SNMPGetValue(transport, &quot;.1.3.6.1.4.1.232.6.2.9.3.1.4.&quot; . $1);&#x0D;&#x0A;if (name == 1)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;&#x0D;&#x0A;return %(true, $1, name);</instanceFilter>
+				</dci>
+				<dci id="1574">
+					<guid>5e744f01-9e66-d84a-b5df-c66d16818c15</guid>
+					<name>.1.3.6.1.4.1.232.22.2.3.1.3.1.11.{instance}</name>
+					<description>HP condition of the rack fan {instance}</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>512</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>4</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 2:&#x0A;&#x09;&#x09;return &quot;ok&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3:&#x0A;&#x09;&#x09;return &quot;degraded&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 4:&#x0A;&#x09;&#x09;return &quot;failed&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;default:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<thresholds>
+						<threshold id="1">
+							<function>0</function>
+							<condition>7</condition>
+							<value>ok</value>
+							<activationEvent>DC_STATUS_MINOR</activationEvent>
+							<deactivationEvent>DC_STATUS_NORMAL</deactivationEvent>
+							<sampleCount>1</sampleCount>
+							<repeatInterval>-1</repeatInterval>
+							<script></script>
+						</threshold>
+					</thresholds>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.22.2.3.1.3.1.11</instanceDiscoveryData>
+					<instanceFilter>transport = CreateSNMPTransport($node);&#x0D;&#x0A;if (transport == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;name = SNMPGetValue(transport, &quot;.1.3.6.1.4.1.232.22.2.3.1.3.1.11.&quot; . $1);&#x0D;&#x0A;if (name == 1)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;&#x0D;&#x0A;return %(true, $1, name);</instanceFilter>
+				</dci>
+				<dci id="1580">
+					<guid>c2cb70e6-9fe3-164a-b881-ee8a51b05995</guid>
+					<name>.1.3.6.1.4.1.232.22.2.5.1.1.1.17.{instance}</name>
+					<description>HP condition of the rack power supply {instance}</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>512</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>4</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 2:&#x0A;&#x09;&#x09;return &quot;ok&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3:&#x0A;&#x09;&#x09;return &quot;degraded&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 4:&#x0A;&#x09;&#x09;return &quot;failed&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;default:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<thresholds>
+						<threshold id="1">
+							<function>0</function>
+							<condition>7</condition>
+							<value>ok</value>
+							<activationEvent>DC_STATUS_MINOR</activationEvent>
+							<deactivationEvent>DC_STATUS_NORMAL</deactivationEvent>
+							<sampleCount>1</sampleCount>
+							<repeatInterval>-1</repeatInterval>
+							<script></script>
+						</threshold>
+					</thresholds>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.22.2.5.1.1.1.17</instanceDiscoveryData>
+					<instanceFilter>transport = CreateSNMPTransport($node);&#x0D;&#x0A;if (transport == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;name = SNMPGetValue(transport, &quot;.1.3.6.1.4.1.232.22.2.5.1.1.1.17.&quot; . $1);&#x0D;&#x0A;if (name == 1)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;&#x0D;&#x0A;return %(true, $1, name);</instanceFilter>
+				</dci>
+				<dci id="1581">
+					<guid>97ede9f7-a1cb-3943-b78d-65e69bced29e</guid>
+					<name>.1.3.6.1.4.1.232.6.2.14.3.{instance}</name>
+					<description>HP state of the memory protection subsystem</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>512</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>4</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 1:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 2:&#x0A;&#x09;&#x09;return &quot;notProtected&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3:&#x0A;&#x09;&#x09;return &quot;protected&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 4:&#x0A;&#x09;&#x09;return &quot;degraded&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 5:&#x0A;&#x09;&#x09;return &quot;dimmEcc&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 6:&#x0A;&#x09;&#x09;return &quot;mirrorNoFaults&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 7:&#x0A;&#x09;&#x09;return &quot;mirrorWithFaults&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 8:&#x0A;&#x09;&#x09;return &quot;hotSpareNoFaults&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 9:&#x0A;&#x09;&#x09;return &quot;hotSpareWithFaults&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 10:&#x0A;&#x09;&#x09;return &quot;xorNoFaults&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 11:&#x0A;&#x09;&#x09;return &quot;xorWithFaults&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 12:&#x0A;&#x09;&#x09;return &quot;advancedEcc&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 13:&#x0A;&#x09;&#x09;return &quot;advancedEccWithFaults&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 14:&#x0A;&#x09;&#x09;return &quot;degraded&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 15:&#x0A;&#x09;&#x09;return &quot;lockStep&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;default:&#x0A;&#x09;&#x09;return &quot;lockStepWithFaults&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.6.2.14.3</instanceDiscoveryData>
+					<instanceFilter>transport = CreateSNMPTransport($node);&#x0D;&#x0A;if (transport == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;name = SNMPGetValue(transport, &quot;.1.3.6.1.4.1.232.6.2.14.3.&quot; . $1);&#x0D;&#x0A;if (name == 1)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;&#x0D;&#x0A;return %(true, $1, name);</instanceFilter>
+				</dci>
+				<dci id="1598">
+					<guid>cb05ad9b-a46b-8c4e-ae67-4aed67edaff5</guid>
+					<name>.1.3.6.1.4.1.232.6.2.14.4.{instance}</name>
+					<description>HP condition of the memory protection subsystem</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>512</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>4</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 1:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 2:&#x0A;&#x09;&#x09;return &quot;ok&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3:&#x0A;&#x09;&#x09;return &quot;degraded&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;default:&#x0A;&#x09;&#x09;return &quot;lockStepWithFaults&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<thresholds>
+						<threshold id="1">
+							<function>0</function>
+							<condition>7</condition>
+							<value>ok</value>
+							<activationEvent>SYS_THRESHOLD_REACHED</activationEvent>
+							<deactivationEvent>SYS_THRESHOLD_REARMED</deactivationEvent>
+							<sampleCount>1</sampleCount>
+							<repeatInterval>-1</repeatInterval>
+							<script></script>
+						</threshold>
+					</thresholds>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.6.2.14.4</instanceDiscoveryData>
+					<instanceFilter>transport = CreateSNMPTransport($node);&#x0D;&#x0A;if (transport == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;name = SNMPGetValue(transport, &quot;.1.3.6.1.4.1.232.6.2.14.4.&quot; . $1);&#x0D;&#x0A;if (name == 1)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;&#x0D;&#x0A;return %(true, $1, name);</instanceFilter>
+				</dci>
+				<dci id="1611">
+					<guid>a61e6f97-8e1b-fb42-8538-9838a0839811</guid>
+					<name>.1.3.6.1.4.1.232.18.2.2.1.1.11.{instance}</name>
+					<description>HP status of the NIC logical group {instance}</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>512</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>4</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 2:&#x0A;&#x09;&#x09;return &quot;ok&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3:&#x0A;&#x09;&#x09;return &quot;primaryFailed&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 4:&#x0A;&#x09;&#x09;return &quot;standbyFailed&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 5:&#x0A;&#x09;&#x09;return &quot;groupFailed&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 6:&#x0A;&#x09;&#x09;return &quot;redundancyReduced&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 7:&#x0A;&#x09;&#x09;return &quot;redundancyLost&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;default:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<thresholds>
+						<threshold id="1">
+							<function>0</function>
+							<condition>7</condition>
+							<value>ok</value>
+							<activationEvent>SYS_THRESHOLD_REACHED</activationEvent>
+							<deactivationEvent>SYS_THRESHOLD_REARMED</deactivationEvent>
+							<sampleCount>1</sampleCount>
+							<repeatInterval>-1</repeatInterval>
+							<script></script>
+						</threshold>
+					</thresholds>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.18.2.2.1.1.11</instanceDiscoveryData>
+					<instanceFilter>transport = CreateSNMPTransport($node);&#x0D;&#x0A;if (transport == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;name = SNMPGetValue(transport, &quot;.1.3.6.1.4.1.232.18.2.2.1.1.11.&quot; . $1);&#x0D;&#x0A;if (name == 1)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;&#x0D;&#x0A;return %(true, $1, name);</instanceFilter>
+				</dci>
+				<dci id="1621">
+					<guid>06420b1d-f29b-134b-b4a1-00851fe30dfa</guid>
+					<name>.1.3.6.1.4.1.232.16.2.7.1.1.4.{instance}</name>
+					<description>HP fibre channel host controller status {instance}</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>512</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>4</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 2:&#x0A;&#x09;&#x09;return &quot;ok&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3:&#x0A;&#x09;&#x09;return &quot;Failed&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 4:&#x0A;&#x09;&#x09;return &quot;Shutdown&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 5:&#x0A;&#x09;&#x09;return &quot;LoopDegraded&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 6:&#x0A;&#x09;&#x09;return &quot;LoopFailed&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 7:&#x0A;&#x09;&#x09;return &quot;NotConnected&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;default:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<thresholds>
+						<threshold id="1">
+							<function>0</function>
+							<condition>7</condition>
+							<value>ok</value>
+							<activationEvent>SYS_THRESHOLD_REACHED</activationEvent>
+							<deactivationEvent>SYS_THRESHOLD_REARMED</deactivationEvent>
+							<sampleCount>1</sampleCount>
+							<repeatInterval>-1</repeatInterval>
+							<script></script>
+						</threshold>
+					</thresholds>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.16.2.7.1.1.4</instanceDiscoveryData>
+					<instanceFilter>transport = CreateSNMPTransport($node);&#x0D;&#x0A;if (transport == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;name = SNMPGetValue(transport, &quot;.1.3.6.1.4.1.232.16.2.7.1.1.4.&quot; . $1);&#x0D;&#x0A;if (name == 1)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;&#x0D;&#x0A;return %(true, $1, name);</instanceFilter>
+				</dci>
+				<dci id="1626">
+					<guid>58528aca-7cd9-d947-88d7-2843d4b5ff0a</guid>
+					<name>.1.3.6.1.4.1.232.18.2.3.1.1.14.{instance}</name>
+					<description>HP physical NIC adapter status {instance}</description>
+					<dataType>4</dataType>
+					<samples>0</samples>
+					<origin>2</origin>
+					<interval>60</interval>
+					<retention>30</retention>
+					<instance></instance>
+					<systemTag></systemTag>
+					<delta>0</delta>
+					<flags>512</flags>
+					<snmpRawValueType>0</snmpRawValueType>
+					<snmpPort>0</snmpPort>
+					<instanceDiscoveryMethod>4</instanceDiscoveryMethod>
+					<transformation>switch ($1)&#x0A;{&#x0A;&#x09;case 2:&#x0A;&#x09;&#x09;return &quot;ok&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 3:&#x0A;&#x09;&#x09;return &quot;generalFailure&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;case 4:&#x0A;&#x09;&#x09;return &quot;linkFailure&quot;;&#x0A;&#x09;&#x09;break;&#x0A;&#x09;default:&#x0A;&#x09;&#x09;return &quot;other&quot;;&#x0A;&#x09;&#x09;break;&#x0A;}</transformation>
+					<perfTabSettings>&lt;config&gt;&#x0A;   &lt;enabled&gt;false&lt;/enabled&gt;&#x0A;   &lt;autoScale&gt;true&lt;/autoScale&gt;&#x0A;   &lt;logScaleEnabled&gt;false&lt;/logScaleEnabled&gt;&#x0A;   &lt;stacked&gt;false&lt;/stacked&gt;&#x0A;   &lt;minYScaleValue&gt;1&lt;/minYScaleValue&gt;&#x0A;   &lt;maxYScaleValue&gt;100&lt;/maxYScaleValue&gt;&#x0A;   &lt;timeRange&gt;1&lt;/timeRange&gt;&#x0A;   &lt;timeUnits&gt;1&lt;/timeUnits&gt;&#x0A;   &lt;type&gt;0&lt;/type&gt;&#x0A;   &lt;color&gt;49152&lt;/color&gt;&#x0A;   &lt;title&gt;&lt;/title&gt;&#x0A;   &lt;name&gt;&lt;/name&gt;&#x0A;   &lt;showThresholds&gt;false&lt;/showThresholds&gt;&#x0A;   &lt;groupName&gt;&lt;/groupName&gt;&#x0A;   &lt;order&gt;100&lt;/order&gt;&#x0A;   &lt;parentDciId&gt;0&lt;/parentDciId&gt;&#x0A;&lt;/config&gt;</perfTabSettings>
+					<instanceDiscoveryData>.1.3.6.1.4.1.232.18.2.3.1.1.14</instanceDiscoveryData>
+					<instanceFilter>transport = CreateSNMPTransport($node);&#x0D;&#x0A;if (transport == null)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;name = SNMPGetValue(transport, &quot;.1.3.6.1.4.1.232.18.2.3.1.1.14.&quot; . $1);&#x0D;&#x0A;if (name == 1)&#x0D;&#x0A;&#x09;return false;&#x0D;&#x0A;&#x0D;&#x0A;return %(true, $1, name);</instanceFilter>
+				</dci>
+			</dataCollection>
+			<filter></filter>
+		</template>
+	</templates>
+	<traps>
+	</traps>
+	<rules>
+	</rules>
+	<scripts>
+	</scripts>
+	<objectTools>
+	</objectTools>
+	<dciSummaryTables>
+	</dciSummaryTables>
+</configuration>
